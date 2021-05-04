@@ -31,7 +31,7 @@ namespace Model.Data
 
         public void Insert(Reservation uneReservation)
         {
-            _DBAL.Insert(" Reservation VALUES (" + uneReservation.IdReservation + "," + uneReservation.LeClient.IdClient+",'"+uneReservation.DateReservation + "'," + uneReservation.NbJoueurs + ","+uneReservation.NbObstacles + ","+ uneReservation.LaSalle.IdSalle + ","+ uneReservation.LaTransaction.getIdTransactions() + ");");
+            _DBAL.Insert(" Reservation VALUES (" + uneReservation.IdReservation + "," + uneReservation.LeClient.IdClient+",'"+uneReservation.DateReservation.ToString("yyyy-MM-dd HH") + "'," + uneReservation.NbJoueurs + ","+uneReservation.NbObstacles + ","+ uneReservation.LaSalle.IdSalle + ","+ uneReservation.LaTransaction.getIdTransactions() + ");");
         }
 
         public void Update(Reservation uneReservation)
@@ -71,6 +71,24 @@ namespace Model.Data
             Transactions mytransactions = this._DaoTransactions.SelectById((int)UneDataRow["idTransaction"]);
             Reservation uneReservation = new Reservation((int)UneDataRow["id"], myclient, mysalle, mytransactions, (DateTime)UneDataRow["DateReservation"], (int)UneDataRow["nbJoueurs"], (int)UneDataRow["nbObstacle"]);
             return uneReservation;
+        }
+
+
+        public int SelectLastId()
+        {
+            List<Reservation> uneListeReservation = new List<Reservation>();
+            List<int> DesEntiers = new List<int>();
+            DataTable uneDataTable = _DBAL.SelectAll("Reservation");
+            int last = 0;
+            foreach (DataRow dtr in uneDataTable.Rows)
+            {
+                last = (int)dtr["id"];
+                DesEntiers.Add(last);
+            }
+            int nb = DesEntiers.Count;
+            last = DesEntiers.Max();
+            return last;
+
         }
     }
 }

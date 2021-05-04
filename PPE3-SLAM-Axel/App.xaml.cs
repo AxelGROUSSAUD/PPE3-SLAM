@@ -20,10 +20,12 @@ namespace PPE3_SLAM_Axel
         private daoReservation thedaoreservation;
         private DAOsalles thedaosalles;
         private DAOtheme theDaoTheme;
+        private DAOutilisateurs theDaoUtilisateurs;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             thedbal = new Dbal("LSRGames");
+            theDaoUtilisateurs = new DAOutilisateurs(thedbal);
             thedaoreservation = new daoReservation(thedbal);
             theDaoTheme = new DAOtheme(thedbal);
             thedaosalles = new DAOsalles(thedbal,theDaoTheme);

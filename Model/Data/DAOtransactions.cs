@@ -53,5 +53,22 @@ namespace Model.Data
                 monClient,
                 (double)r["MontantTransaction"]);
         }
+
+        public int SelectLastId()
+        {
+            
+            List<int> DesEntiers = new List<int>();
+            DataTable uneDataTable = _dbal.SelectAll("Transactions");
+            int last = 0;
+            foreach (DataRow dtr in uneDataTable.Rows)
+            {
+                last = (int)dtr["id"];
+                DesEntiers.Add(last);
+            }
+            int nb = DesEntiers.Count;
+            last = DesEntiers.Max();
+            return last;
+
+        }
     }
 }

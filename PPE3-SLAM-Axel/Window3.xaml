@@ -9,7 +9,7 @@
     <Grid>
         <TabControl x:Name="tabReservation" HorizontalAlignment="Left" Height="620" Margin="0" VerticalAlignment="Top" Width="800">
             
-            <TabItem Header="Infos Client">
+            <TabItem x:Name="inf_clt" Header="Infos Client">
                 <Grid x:Name="SelectionClient" Background="#FFE5E5E5" Height="590">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -78,30 +78,24 @@
 
                     </Grid.RowDefinitions>
                     <Label x:Name="lbl_nbJoueur" Content="Nombre de Joueurs : " Grid.Column="0" Grid.Row="0" Width="200" Height="26" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ComboBox x:Name="cbx_nbjoueurs" Grid.Column="1" Grid.Row="0" Width="200" Height="26">
-                        <ComboBoxItem Content="1"/>
-                        <ComboBoxItem Content="2"/>
-                        <ComboBoxItem Content="3"/>
-                        <ComboBoxItem Content="4"/>
-                        <ComboBoxItem Content="5"/>
-                        <ComboBoxItem Content="6"/>
-                        <ComboBoxItem Content="7"/>
-                        
-                    </ComboBox>
+                    <ComboBox x:Name="cbx_nbjoueurs" Grid.Column="1" Grid.Row="0" Width="200" Height="26" SelectionChanged="cbx_nbjoueurs_SelectionChanged"/>
+
+
+
                     <Label x:Name="lbl_obstacle" Content="Obstacle : " Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <ComboBox x:Name="cbx_position_un" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="3" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_deux" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="4" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_trois" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="5" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_quatre" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="6" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_cinq" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="7" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_six" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="8" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_sept" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="9" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_huit" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="10" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_neuf" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="11" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_dix" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="12" Width="200" Height="26"/>
-                    <ComboBox x:Name="cbx_position_onze" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="13" Width="200" Height="26"/>
+                    <ComboBox x:Name="cbx_position_un" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_un}" Grid.Column="0" Grid.Row="3" Width="200" Height="26" SelectionChanged="cbx_position_un_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_deux" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_deux}" Grid.Column="0" Grid.Row="4" Width="200" Height="26" SelectionChanged="cbx_position_deux_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_trois" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_trois}" Grid.Column="0" Grid.Row="5" Width="200" Height="26" SelectionChanged="cbx_position_trois_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_quatre" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_quatre}" Grid.Column="0" Grid.Row="6" Width="200" Height="26" SelectionChanged="cbx_position_quatre_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_cinq" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_cinq}" Grid.Column="0" Grid.Row="7" Width="200" Height="26" SelectionChanged="cbx_position_cinq_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_six" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_six}" Grid.Column="0" Grid.Row="8" Width="200" Height="26" SelectionChanged="cbx_position_six_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_sept" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_sept}" Grid.Column="0" Grid.Row="9" Width="200" Height="26" SelectionChanged="cbx_position_sept_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_huit" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_huit}" Grid.Column="0" Grid.Row="10" Width="200" Height="26" SelectionChanged="cbx_position_huit_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_neuf" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_neuf}" Grid.Column="0" Grid.Row="11" Width="200" Height="26" SelectionChanged="cbx_position_neuf_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_dix" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_dix}" Grid.Column="0" Grid.Row="12" Width="200" Height="26" SelectionChanged="cbx_position_dix_SelectionChanged"/>
+                    <ComboBox x:Name="cbx_position_onze" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_onze}" Grid.Column="0" Grid.Row="13" Width="200" Height="26" SelectionChanged="cbx_position_onze_SelectionChanged"/>
                     <Button x:Name="Valider" Command="{Binding ValiderCommand}" Content="Valider" Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="2" Width="200"/>
-                    <ComboBox x:Name="cbx_position_douze" ItemsSource="{Binding ListObstacles}" Grid.Column="0" Grid.Row="14" Width="200" Height="26"/>
+                    <ComboBox x:Name="cbx_position_douze" ItemsSource="{Binding ListObstacles}" SelectedItem="{Binding SelectedObstacle_p_douze}" Grid.Column="0" Grid.Row="14" Width="200" Height="26" SelectionChanged="cbx_position_douze_SelectionChanged"/>
 
                     <Label Content="Position : " Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Label Content="1" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>

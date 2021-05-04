@@ -152,5 +152,11 @@ namespace Model.Data
         {
             return this.RQuery("select count("+attribut+") as NbSalles from " + table + " where " + fieldTestCondition).Tables[0].Rows[0];
         }
+
+        public DataRow SelectLastId(string table)
+        {
+            return this.RQuery("select max(id) from "+ table).Tables[0].Rows[0];
+        }
+
     }
 }

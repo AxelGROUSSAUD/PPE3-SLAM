@@ -67,5 +67,22 @@ namespace Model.Data
             PositionObstacle unePositionObstacle = new PositionObstacle((int)UneDataRow["id"], myObstacle, myreservation, (int)UneDataRow["PositionObstacle"]);
             return unePositionObstacle;
         }
+
+        public int SelectLastId()
+        {
+           
+            List<int> DesEntiers = new List<int>();
+            DataTable uneDataTable = _DBAL.SelectAll("Positionobstacle");
+            int last = 0;
+            foreach (DataRow dtr in uneDataTable.Rows)
+            {
+                last = (int)dtr["id"];
+                DesEntiers.Add(last);
+            }
+            int nb = DesEntiers.Count;
+            last = DesEntiers.Max();
+            return last;
+
+        }
     }
 }
