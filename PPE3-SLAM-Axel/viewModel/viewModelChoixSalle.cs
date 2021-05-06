@@ -21,19 +21,23 @@ namespace PPE3_SLAM_Axel.viewModel
 
         private DateTime laDateReservation;
         private salles selectedSalle;
-        
+        private Window1 wndReservation;
+        private Window2 wndSalle;
+
         private ICommand choixCommand;
 
         private ObservableCollection<salles> listSalles;
 
         public ObservableCollection<salles> ListSalles { get => listSalles; set => listSalles = value; }
 
-        public viewModelChoixSalle(DAOtheme unDaoTheme, DAOsalles unDaoSalle, DateTime LaDate)
+        public viewModelChoixSalle(DAOtheme unDaoTheme, DAOsalles unDaoSalle, DateTime LaDate,Window1 uneWindow1,Window2 uneWindow2)
         {
+            wndReservation = uneWindow1;
+            wndSalle = uneWindow2;
             laDateReservation = LaDate;
             vmdaotheme = unDaoTheme;
             vmdaosalle = unDaoSalle;
-            listSalles = new ObservableCollection<salles>(unDaoSalle.SelectAllByFieldTestCondition("id not in (select count(id) from Reservation where dayofmonth(DateReservation)= "+LaDate.Day+" and month(DateReservation) = "+LaDate.Month+" and year(DateReservation) = "+LaDate.Year+" and hour(DateReservation) = '"+LaDate.Hour+"%');"));
+            listSalles = new ObservableCollection<salles>(unDaoSalle.SelectAllByFieldTestCondition("id not in (select idSalle from Reservation where dayofmonth(DateReservation)= "+LaDate.Day+" and month(DateReservation) = "+LaDate.Month+" and year(DateReservation) = "+LaDate.Year+" and hour(DateReservation) = '"+LaDate.Hour+"%');"));
         }
 
         public salles SelectedSalle
@@ -142,7 +146,7 @@ namespace PPE3_SLAM_Axel.viewModel
             DAOclients thedaoclients = new DAOclients(thedbal);
             daoObstacle thedaoobstacle = new daoObstacle(thedbal);
             MessageBoxResult msg;
-            Window3 wnd = new Window3(thedaoclients, thedaoobstacle, laDateReservation, SelectedSalle);
+            Window3 wnd = new Window3(thedaoclients, thedaoobstacle, laDateReservation, SelectedSalle,wndReservation,wndSalle);
             if (SelectedSalle != null)
             {
                 wnd.Show();

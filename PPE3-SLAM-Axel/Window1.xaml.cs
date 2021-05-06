@@ -24,12 +24,13 @@ namespace PPE3_SLAM_Axel
 
         //Création d'une liste de bouton
         
-        private List<Button> uneListebouton = new List<Button>();
+        public List<Button> uneListebouton = new List<Button>();
         private DateTime DateJour = new DateTime();
         private DAOtheme thedaotheme;
         private DAOsalles thedaosalles;
         private Dbal thedbal;
         public DateTime DateChoixSalle;
+        private Window1 wndReservation;
 
 
         public Window1(daoReservation unDaoReservation, DAOsalles unDaoSalles)
@@ -123,6 +124,7 @@ namespace PPE3_SLAM_Axel
             uneListebouton.Add(sept_onze);
             uneListebouton.Add(sept_douze);
             #endregion
+            wndReservation = this;
             thedbal = new Dbal("LSRGames");
             thedaotheme = new DAOtheme(thedbal);
             thedaosalles = new DAOsalles(thedbal, thedaotheme);
@@ -135,7 +137,7 @@ namespace PPE3_SLAM_Axel
 
         }
 
-        public static void InitialiserFenêtre(List<Button> uneListedeBouton, DAOsalles unDaoSalles,DateTime uneDate)
+        public void InitialiserFenêtre(List<Button> uneListedeBouton, DAOsalles unDaoSalles,DateTime uneDate)
         {
             //premier chiffre = colonne = jour , deuxième chiffre = ligne = heure
             string extraction;
@@ -152,43 +154,43 @@ namespace PPE3_SLAM_Axel
                 {
                     case "un":
                         // btn.Content = position.ToString();
-                        debutRequete = "id not in (select count(id) from Reservation where dayofmonth(DateReservation)= "+uneListeDate[0].Day+" and month(DateReservation) = "+uneListeDate[0].Month+" and year(DateReservation) = "+uneListeDate[0].Year ;
+                        debutRequete = "id not in (select idSalle from Reservation where dayofmonth(DateReservation)= "+uneListeDate[0].Day+" and month(DateReservation) = "+uneListeDate[0].Month+" and year(DateReservation) = "+uneListeDate[0].Year ;
                         RequeteSQLCount(btn, unDaoSalles, debutRequete);
                         break;
 
                     case "deux":
                         //btn.Content = position.ToString();
-                        debutRequete = "id not in (select count(id) from Reservation where dayofmonth(DateReservation)= " + uneListeDate[1].Day + " and month(DateReservation) = " + uneListeDate[1].Month + " and year(DateReservation) = " + uneListeDate[1].Year;
+                        debutRequete = "id not in (select idSalle from Reservation where dayofmonth(DateReservation)= " + uneListeDate[1].Day + " and month(DateReservation) = " + uneListeDate[1].Month + " and year(DateReservation) = " + uneListeDate[1].Year;
                         RequeteSQLCount(btn, unDaoSalles, debutRequete);
                         break;
 
                     case "trois":
-                        debutRequete = "id not in (select count(id) from Reservation where dayofmonth(DateReservation)= " + uneListeDate[2].Day + " and month(DateReservation) = " + uneListeDate[2].Month + " and year(DateReservation) = " + uneListeDate[3].Year;
+                        debutRequete = "id not in (select idSalle from Reservation where dayofmonth(DateReservation)= " + uneListeDate[2].Day + " and month(DateReservation) = " + uneListeDate[2].Month + " and year(DateReservation) = " + uneListeDate[3].Year;
                         //btn.Content = position.ToString();
                         RequeteSQLCount(btn, unDaoSalles, debutRequete);
                         break;
 
                     case "quatre":
-                        debutRequete = "id not in (select count(id) from Reservation where dayofmonth(DateReservation)= " + uneListeDate[3].Day + " and month(DateReservation) = " + uneListeDate[3].Month + " and year(DateReservation) = " + uneListeDate[3].Year;
+                        debutRequete = "id not in (select idSalle from Reservation where dayofmonth(DateReservation)= " + uneListeDate[3].Day + " and month(DateReservation) = " + uneListeDate[3].Month + " and year(DateReservation) = " + uneListeDate[3].Year;
                         //btn.Content = position.ToString();
                         RequeteSQLCount(btn, unDaoSalles, debutRequete);
                         break;
 
                     case "cinq":
                         //btn.Content = position.ToString();
-                        debutRequete = "id not in (select count(id) from Reservation where dayofmonth(DateReservation)= " + uneListeDate[4].Day + " and month(DateReservation) = " + uneListeDate[4].Month + " and year(DateReservation) = " + uneListeDate[4].Year;
+                        debutRequete = "id not in (select idSalle from Reservation where dayofmonth(DateReservation)= " + uneListeDate[4].Day + " and month(DateReservation) = " + uneListeDate[4].Month + " and year(DateReservation) = " + uneListeDate[4].Year;
                         RequeteSQLCount(btn, unDaoSalles, debutRequete);
                         break;
 
                     case "six":
-                        debutRequete = "id not in (select count(id) from Reservation where dayofmonth(DateReservation)= " + uneListeDate[5].Day + " and month(DateReservation) = " + uneListeDate[5].Month + " and year(DateReservation) = " + uneListeDate[5].Year;
+                        debutRequete = "id not in (select idSalle from Reservation where dayofmonth(DateReservation)= " + uneListeDate[5].Day + " and month(DateReservation) = " + uneListeDate[5].Month + " and year(DateReservation) = " + uneListeDate[5].Year;
                         //btn.Content = position.ToString();
                         RequeteSQLCount(btn, unDaoSalles, debutRequete);
                         break;
 
                     case "sept":
                         //btn.Content = position.ToString();
-                        debutRequete = "id not in (select count(id) from Reservation where dayofmonth(DateReservation)= " + uneListeDate[6].Day + " and month(DateReservation) = " + uneListeDate[6].Month + " and year(DateReservation) = " + uneListeDate[6].Year;
+                        debutRequete = "id not in (select idSalle from Reservation where dayofmonth(DateReservation)= " + uneListeDate[6].Day + " and month(DateReservation) = " + uneListeDate[6].Month + " and year(DateReservation) = " + uneListeDate[6].Year;
                         RequeteSQLCount(btn, unDaoSalles, debutRequete);
                         break;
 
@@ -415,7 +417,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_un", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_un.BorderBrush = Brushes.Blue;
             un_un.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -428,7 +430,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_deux", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_deux.BorderBrush = Brushes.Blue;
             un_deux.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -439,7 +441,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_trois", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_trois.BorderBrush = Brushes.Blue;
             un_trois.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -450,7 +452,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_quatre", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_quatre.BorderBrush = Brushes.Blue;
             un_quatre.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -461,7 +463,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_cinq", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_cinq.BorderBrush = Brushes.Blue;
             un_cinq.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -472,7 +474,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_six", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_six.BorderBrush = Brushes.Blue;
             un_six.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -484,7 +486,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_sept", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_sept.BorderBrush = Brushes.Blue;
             un_sept.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -495,7 +497,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_huit", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_huit.BorderBrush = Brushes.Blue;
             un_huit.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -506,7 +508,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_neuf", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_neuf.BorderBrush = Brushes.Blue;
             un_neuf.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -517,7 +519,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_dix", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_dix.BorderBrush = Brushes.Blue;
             un_dix.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -528,7 +530,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_onze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_onze.BorderBrush = Brushes.Blue;
             un_onze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -539,7 +541,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("un_douze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             un_douze.BorderBrush = Brushes.Blue;
             un_douze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -550,7 +552,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_un", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_un.BorderBrush = Brushes.Blue;
             deux_un.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -561,7 +563,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_deux", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_deux.BorderBrush = Brushes.Blue;
             deux_deux.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -572,7 +574,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_trois", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_trois.BorderBrush = Brushes.Blue;
             deux_trois.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -583,7 +585,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_quatre", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_quatre.BorderBrush = Brushes.Blue;
             deux_quatre.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -594,7 +596,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_cinq", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_cinq.BorderBrush = Brushes.Blue;
             deux_cinq.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -605,7 +607,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_six", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_six.BorderBrush = Brushes.Blue;
             deux_six.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -616,7 +618,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_sept", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_sept.BorderBrush = Brushes.Blue;
             deux_sept.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -627,7 +629,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_huit", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_huit.BorderBrush = Brushes.Blue;
             deux_huit.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -638,7 +640,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_neuf", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_neuf.BorderBrush = Brushes.Blue;
             deux_neuf.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -649,7 +651,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_dix", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_dix.BorderBrush = Brushes.Blue;
             deux_dix.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -660,7 +662,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_onze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_onze.BorderBrush = Brushes.Blue;
             deux_onze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -671,7 +673,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("deux_douze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             deux_douze.BorderBrush = Brushes.Blue;
             deux_douze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -682,7 +684,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_un", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_un.BorderBrush = Brushes.Blue;
             trois_un.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -693,7 +695,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_deux", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_deux.BorderBrush = Brushes.Blue;
             trois_deux.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -704,7 +706,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_trois", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_trois.BorderBrush = Brushes.Blue;
             trois_trois.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -715,7 +717,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_quatre", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_quatre.BorderBrush = Brushes.Blue;
             trois_quatre.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -726,7 +728,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_cinq", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_cinq.BorderBrush = Brushes.Blue;
             trois_cinq.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -737,7 +739,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_six", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_six.BorderBrush = Brushes.Blue;
             trois_six.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -748,7 +750,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_sept", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_sept.BorderBrush = Brushes.Blue;
             trois_sept.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -759,7 +761,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_huit", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_huit.BorderBrush = Brushes.Blue;
             trois_huit.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -770,7 +772,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_neuf", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_neuf.BorderBrush = Brushes.Blue;
             trois_neuf.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -781,7 +783,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_dix", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_dix.BorderBrush = Brushes.Blue;
             trois_dix.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -792,7 +794,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_onze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_onze.BorderBrush = Brushes.Blue;
             trois_onze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -803,7 +805,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("trois_douze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             trois_douze.BorderBrush = Brushes.Blue;
             trois_douze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -814,7 +816,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_un", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_un.BorderBrush = Brushes.Blue;
             quatre_un.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -825,7 +827,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_deux", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_deux.BorderBrush = Brushes.Blue;
             quatre_deux.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -836,7 +838,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_trois", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_trois.BorderBrush = Brushes.Blue;
             quatre_trois.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -847,7 +849,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_quatre", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_quatre.BorderBrush = Brushes.Blue;
             quatre_quatre.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -858,7 +860,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_cinq", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_cinq.BorderBrush = Brushes.Blue;
             quatre_cinq.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -869,7 +871,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_six", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_six.BorderBrush = Brushes.Blue;
             quatre_six.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -880,7 +882,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_sept", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_sept.BorderBrush = Brushes.Blue;
             quatre_sept.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -891,7 +893,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_huit", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_huit.BorderBrush = Brushes.Blue;
             quatre_huit.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -902,7 +904,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_neuf", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_neuf.BorderBrush = Brushes.Blue;
             quatre_neuf.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -913,7 +915,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_dix", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_dix.BorderBrush = Brushes.Blue;
             quatre_dix.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -924,7 +926,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_onze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_onze.BorderBrush = Brushes.Blue;
             quatre_onze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -935,7 +937,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("quatre_douze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             quatre_douze.BorderBrush = Brushes.Blue;
             quatre_douze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -946,7 +948,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_un", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_un.BorderBrush = Brushes.Blue;
             cinq_un.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -957,7 +959,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_deux", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_deux.BorderBrush = Brushes.Blue;
             cinq_deux.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -968,7 +970,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_trois", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_trois.BorderBrush = Brushes.Blue;
             cinq_trois.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -979,7 +981,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_quatre", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_quatre.BorderBrush = Brushes.Blue;
             cinq_quatre.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -990,7 +992,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_cinq", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_cinq.BorderBrush = Brushes.Blue;
             cinq_cinq.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1001,7 +1003,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_six", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_six.BorderBrush = Brushes.Blue;
             cinq_six.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1012,7 +1014,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_sept", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_sept.BorderBrush = Brushes.Blue;
             cinq_sept.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1023,7 +1025,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_huit", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_huit.BorderBrush = Brushes.Blue;
             cinq_huit.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1034,7 +1036,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_neuf", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_neuf.BorderBrush = Brushes.Blue;
             cinq_neuf.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1045,7 +1047,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_dix", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_dix.BorderBrush = Brushes.Blue;
             cinq_dix.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1056,7 +1058,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_onze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_onze.BorderBrush = Brushes.Blue;
             cinq_onze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1067,7 +1069,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("cinq_douze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             cinq_douze.BorderBrush = Brushes.Blue;
             cinq_douze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1078,7 +1080,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_un", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_un.BorderBrush = Brushes.Blue;
             six_un.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1089,7 +1091,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_deux", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_deux.BorderBrush = Brushes.Blue;
             six_deux.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1100,7 +1102,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_trois", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_trois.BorderBrush = Brushes.Blue;
             six_trois.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1111,7 +1113,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_quatre", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_quatre.BorderBrush = Brushes.Blue;
             six_quatre.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1122,7 +1124,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_cinq", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_cinq.BorderBrush = Brushes.Blue;
             six_cinq.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1133,7 +1135,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_six", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_six.BorderBrush = Brushes.Blue;
             six_six.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1144,7 +1146,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_sept", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_sept.BorderBrush = Brushes.Blue;
             six_sept.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1155,7 +1157,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_huit", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_huit.BorderBrush = Brushes.Blue;
             six_huit.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1166,7 +1168,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_neuf", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_neuf.BorderBrush = Brushes.Blue;
             six_neuf.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1177,7 +1179,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_dix", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_dix.BorderBrush = Brushes.Blue;
             six_dix.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1188,7 +1190,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_onze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_onze.BorderBrush = Brushes.Blue;
             six_onze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1199,7 +1201,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("six_douze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             six_douze.BorderBrush = Brushes.Blue;
             six_douze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1210,7 +1212,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_un", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_un.BorderBrush = Brushes.Blue;
             sept_un.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1221,7 +1223,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_deux", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_deux.BorderBrush = Brushes.Blue;
             sept_deux.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1232,7 +1234,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_trois", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_trois.BorderBrush = Brushes.Blue;
             sept_trois.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1243,7 +1245,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_quatre", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_quatre.BorderBrush = Brushes.Blue;
             sept_quatre.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1254,7 +1256,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_cinq", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_cinq.BorderBrush = Brushes.Blue;
             sept_cinq.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1265,7 +1267,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_six", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_six.BorderBrush = Brushes.Blue;
             sept_six.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1276,7 +1278,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_sept", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_sept.BorderBrush = Brushes.Blue;
             sept_sept.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1287,7 +1289,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_huit", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_huit.BorderBrush = Brushes.Blue;
             sept_huit.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1298,7 +1300,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_neuf", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_neuf.BorderBrush = Brushes.Blue;
             sept_neuf.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1309,7 +1311,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_dix", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_dix.BorderBrush = Brushes.Blue;
             sept_dix.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1320,7 +1322,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_onze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_onze.BorderBrush = Brushes.Blue;
             sept_onze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1331,7 +1333,7 @@ namespace PPE3_SLAM_Axel
             
             DateTime[] tabDate = RetourneSemaine((DateTime)dpk_datejour.SelectedDate);
             DateChoixSalle = retourneDateSelonNomBoutonetTabDate("sept_douze", tabDate);
-            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle);
+            Window2 wnd = new Window2(thedaosalles, thedaotheme, DateChoixSalle, wndReservation);
             sept_douze.BorderBrush = Brushes.Blue;
             sept_douze.BorderThickness = new Thickness(4);
             wnd.ShowDialog();
@@ -1460,6 +1462,8 @@ namespace PPE3_SLAM_Axel
                 btn.BorderBrush = Brushes.Gray;
                 btn.BorderThickness = new Thickness(0.5);
             }
+
+            this.InitialiserFenêtre(uneListebouton, thedaosalles, (DateTime)dpk_datejour.SelectedDate);
         }
     }
 

@@ -25,8 +25,9 @@ namespace PPE3_SLAM_Axel.viewModel
         private DateTime DateReservation;
         private int nbJoueurs;
         private int nbObstacles;
-        private Window2 wnd2;
-        private Window3 wnd3;
+        private Window1 wndReservation;
+        private Window2 wndSalle;
+        private Window3 wndClient;
         private Obstacle selectedObstacle_p_un;
         private Obstacle selectedObstacle_p_deux;
         private Obstacle selectedObstacle_p_trois;
@@ -42,7 +43,7 @@ namespace PPE3_SLAM_Axel.viewModel
 
         public ObservableCollection<Clients> ListClients { get => listClients; set => listClients = value; }
         public ObservableCollection<Obstacle> ListObstacles { get => listObstacles; set => listObstacles = value; }
-        public viewModelSelectionClient( daoObstacle unDaoObstacle,DAOclients unDaoClient, DateTime laDateReservation,salles uneSalle,int unNbJoueur, int unNbObstacle)
+        public viewModelSelectionClient( daoObstacle unDaoObstacle,DAOclients unDaoClient, DateTime laDateReservation,salles uneSalle,int unNbJoueur, int unNbObstacle, Window1 uneWindow1, Window2 uneWindow2, Window3 uneWindow3)
         {
             vmdaoclient = unDaoClient;
             listClients = new ObservableCollection<Clients>(vmdaoclient.SelectAll());
@@ -52,7 +53,9 @@ namespace PPE3_SLAM_Axel.viewModel
             laSalle = uneSalle;
             nbJoueurs = unNbJoueur;
             nbObstacles = unNbObstacle;
-
+            wndReservation = uneWindow1;
+            wndSalle = uneWindow2;
+            wndClient = uneWindow3;
         }
         //Binding customers
         public Clients SelectedClient
@@ -508,6 +511,10 @@ namespace PPE3_SLAM_Axel.viewModel
                         n = n + 1;
                     }
                 }
+
+                wndClient.Close();
+                wndSalle.Close();
+              
             }
             
 

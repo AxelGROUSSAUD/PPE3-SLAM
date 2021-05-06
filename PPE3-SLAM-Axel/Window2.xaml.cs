@@ -24,10 +24,10 @@ namespace PPE3_SLAM_Axel
     {
         
 
-        public Window2(DAOsalles unDaoSalle, DAOtheme unDaoTheme,DateTime uneDate)
+        public Window2(DAOsalles unDaoSalle, DAOtheme unDaoTheme,DateTime uneDate,Window1 uneWindow1)
         {
             InitializeComponent();
-            ChoixSallesGrid.DataContext = new viewModel.viewModelChoixSalle(unDaoTheme, unDaoSalle, uneDate);
+            ChoixSallesGrid.DataContext = new viewModel.viewModelChoixSalle(unDaoTheme, unDaoSalle, uneDate,uneWindow1,this);
         }
 
         private void btn_retour_Click(object sender, RoutedEventArgs e)

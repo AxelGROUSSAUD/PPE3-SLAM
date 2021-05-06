@@ -27,7 +27,7 @@ namespace PPE3_SLAM_Axel
         public int NbJoueur;
         public List<int> uneListeEntier;
         
-        public Window3(DAOclients unDaoClient, daoObstacle unDaoObstacle, DateTime uneDate, salles uneSalle)
+        public Window3(DAOclients unDaoClient, daoObstacle unDaoObstacle, DateTime uneDate, salles uneSalle, Window1 uneWindow1,Window2 uneWindow2)
         {
             InitializeComponent();
             uneListeComboBox = new List<ComboBox>();
@@ -57,7 +57,7 @@ namespace PPE3_SLAM_Axel
 
 
 
-            SelectionClient.DataContext = new viewModel.viewModelSelectionClient(unDaoObstacle,unDaoClient,uneDate,uneSalle,NbJoueur,NBobstacles);
+            SelectionClient.DataContext = new viewModel.viewModelSelectionClient(unDaoObstacle,unDaoClient,uneDate,uneSalle,NbJoueur,NBobstacles,uneWindow1,uneWindow2,this);
             lst_clients.Visibility = Visibility.Hidden;
             ConfigurationReservation.DataContext = SelectionClient.DataContext;
         }
